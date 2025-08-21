@@ -1,10 +1,11 @@
 # linear_motif
 
-Github repository for Automating Linear Motif Predictions to Map Human Signaling Networks.
+Github repository for 
+Automating Linear Motif Predictions to Map Human Signaling Networks.
 Yitao (Eric) Sun, Yu (Brandon) Xia, Jasmin Coulombe-Huntington
 Department of Bioengineering, McGill University
 
-
+# Abstract
 Short linear motifs (SLiMs) are short sequence patterns that mediate transient protein-protein interactions, often within disordered regions of proteins. SLiMs play central roles in signaling, trafficking, and post-translational regulation, but their short length and low complexity make them difficult to identify both experimentally and computationally. Since the release of motif discovery tools like MEME Suite, the availability of protein-protein interaction data (e.g., BioGRID) has increased by more than five-fold, and recent advances in machine learning offer new opportunities for large-scale, high-resolution motif discovery. Here, we present a new Gibbs sampling-based SLiM discovery method that introduces two key innovations: First, we replace the traditional position-specific scoring matrix (PSSM) with a Hidden Markov Model (HMM) to better accommodate insertions and deletions common in disordered regions; Second, we introduce biased sampling guided by pre-annotated residue-level features derived from Protein Language Models (PLMs), AlphaFold2-derived predictions (disorder, solvent accessibility), and evolutionary conservation. We evaluate our approach using the ELM database and show improved recovery of known motif instances compared to existing tools. We presented three case studies at the end to showcase potential applications of our algorithm. 
 
 <img width="975" height="665" alt="image" src="https://github.com/user-attachments/assets/dbfec2a9-375c-4780-bd26-f3030768b41e" />
