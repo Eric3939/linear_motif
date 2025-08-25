@@ -300,7 +300,7 @@ def main():
 
     results_path = args.results_path
     protein_database_path = '../../data/protein_database.pickle'
-    biogrid_path = '../interactome/biogrid_net.gpickle'
+    biogrid_path = '../../data/biogrid_net.gpickle'
     
     center = args.center # 'Q15084'
     input_proteins_id = read_biogrid(biogrid_path=biogrid_path, center=center)
