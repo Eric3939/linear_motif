@@ -14,7 +14,9 @@ Short linear motifs (SLiMs) are short sequence patterns that mediate transient p
 # Running the algorithm
 Download the two files below in https://drive.google.com/drive/folders/1472iWG8U6g5XaJBz2bdI_UI-kOFbpU-n?usp=sharing
 protein_database_1.pickle
+
 biogrid_net.gpickle
+
 Save the two files directly under the data/ folder, after downloading the whole github repository.
 
 To run the algorithm, first locate search.py in the script folder. Run the following command:
