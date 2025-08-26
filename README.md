@@ -19,11 +19,15 @@ Save the two files directly under the data/ folder, after downloading the whole 
 
 To run the algorithm, first locate search.py in the script folder. Run the following command:
 
-python search.py [LMBD protein]
+python search.py [LMBD protein] [results directory]
 
 The LMBD protein is the interacting protein that has many partners in BioGRID. The algorithm will access the BioGRID data to find all interacting partners and run the motif dicovery algorithm on them. Filters are applied as described in our paper (either low throughput or at least 2 sources). 
 The parameters can be changed in the main function inside search.py
 
+The results will be saved inside the results directory specified by the user. Each search on a LMBD protein network will output one pickle file, which stores the run result of that network.
+User can then use the script result_table.py under script/ folder to convert the pickle files into a table by specifying the folder path they stored their pickle files in the script.
+
 
 # Predicted Motif Database
-The motif database will be available shortly under the results folder. This contains all the motifs found in the human proteome. They are organized into LMBD proteins. Users can either enter their desired LMBD protein as keys to look for all motifs interacting with this LMBD protein, or can use the script we provide to look for all motifs predicted with a certain protein, as contrast to the LMBD protein.  
+We ran our algorithm on the proteins filtered in the way described in our paper. The results are listed in the table results_table.csv. This table lists out all the predicted motifs (221840 instances total) in the human proteome. 
+
