@@ -17,10 +17,10 @@ We call a hub protein (a protein that interacts with several other proteins) a l
 
 ### Step 1 - Clone repo
 Download this Github repository in user's local device. 
-<code>
+```sh
 git clone https://github.com/Eric3939/linear_motif.git
 cd linear_motif
-</code>
+```
 
 ### Step 2 - Download data
 Download these files from Google Drive and place under `data/`:
@@ -34,38 +34,38 @@ The second gpickel file contains all the human PPIs in BioGRID, their number of 
 ### Step 3 - Running models
 There are a few ways to run our algorithm. You can either run it on one single LMBD protein network, or on all the LMBD protein networks in BioGRID.
 **1) Single LMBD protein network with proteins we identified in BioGRID**
-<code>
+```sh
 cd script/
 python search.py [LMBD protein] [output directory]
-</code>
+```
 
 In this method, user is asked to only give a LMBD protein. The algorithm will find all the proteins that interact with the LMBD protein from BioGRID and serch motifs on these interacting proteins. All proteins using this method are pre-annotated. This is the easiest way to use our algorithm, however, it does not offer fluxibility to define what proteins to input. 
 
 **2) User defined proteins**
-<code>
+```sh
 cd script/
-</code>
+```
 Create a text file that contains all the protein user wants to search for motifs. One protein's UniProt ID per line.
-<code>
+```sh
 python run_users_proteins.py [proteins_file_path]
-</code>
+```
 
 In this method, user is asked to input the proteins that they believe might contain a common motif. This is a common way that most linear motif discovery algorithms work. The algorithm retrieves the pre-annotated proteins from our database. Please note that our algorithm currently does not support proteins that are not yet recorded in our database.
 
 **3) Full proteome (all LMBD networks)**
-<code>
+```sh
 cd script/
 python run_proteome.py [biogrid_path] [output_folder]
-</code>
+```
 
 Running this code will recreate our study in the paper. User can also explore running the algorithm in other parameters by modifying the search.py script.
 
 **(Optional) HPC with SLURM**
 If user is using a High Performance Computing (HPC) system with SLURM scheduler, we also made a tool that submit motif searching jobs automatically (user might need to edit the script for it to be compatible with their own pipeline):
-<code>
+```sh
 cd script/
 python submit_slurm.py [biogrid_path] [results_folder] [dataframe_path]
-</code>
+```
 
 ### Step 4 - Results
 The results will be saved inside the output folder. Each search on a LMBD protein network outputs one pickle file, which stores the run result of that network. This means that a full proteome run (e.g., method 3) will output multiple pickle files.
