@@ -1,24 +1,34 @@
 # linear_motif
 
-Github repository for 
-Automating Linear Motif Predictions to Map Human Signaling Networks.
+**Automating Linear Motif Predictions to Map Human Signaling Networks**
 Yitao (Eric) Sun, Yu (Brandon) Xia, Jasmin Coulombe-Huntington
 Department of Bioengineering, McGill University
 
-# Abstract
+
+## Abstract
 Short linear motifs (SLiMs) are short sequence patterns that mediate transient protein-protein interactions, often within disordered regions of proteins. SLiMs play central roles in signaling, trafficking, and post-translational regulation, but their short length and low complexity make them difficult to identify both experimentally and computationally. Since the release of motif discovery tools like MEME Suite, the availability of protein-protein interaction data (e.g., BioGRID) has increased by more than five-fold, and recent advances in machine learning offer new opportunities for large-scale, high-resolution motif discovery. Here, we present a new Gibbs sampling-based SLiM discovery method that introduces two key innovations: First, we replace the traditional position-specific scoring matrix (PSSM) with a Hidden Markov Model (HMM) to better accommodate insertions and deletions common in disordered regions; Second, we introduce biased sampling guided by pre-annotated residue-level features derived from Protein Language Models (PLMs), AlphaFold2-derived predictions (disorder, solvent accessibility), and evolutionary conservation. We evaluate our approach using the ELM database and show improved recovery of known motif instances compared to existing tools. We presented three case studies at the end to showcase potential applications of our algorithm. 
 
 <img width="1200" height="800" alt="image" src="https://github.com/user-attachments/assets/debcdcef-579a-43c2-a7ad-ec1cf1b0d472" />
 
 
-# Running the algorithm
+## Running the algorithm
 Before running the algorithm:
 We call a hub protein (a protein that interacts with several other proteins) a linear motif binding domain protein (LMBD protein). The algorithm (method 1 and 3) finds all the interacting proteins of a LMBD protein and search for a motif in these interacting motifs. We call these interacting proteins a LMBD protein network. The protein-protein interactions are obtained from BioGRID, wiht a filter applied asdescribed in our paper (either low throughput or at least 2 sources). 
 
-Step 1
+### Step 1 - Clone repo
 Download this Github repository in user's local device. 
+<code>
+  git clone https://github.com/Eric3939/linear_motif.git
+  cd linear_motif
+</code>
 
-Step 2
+### Step 2 - Download data
+Download these files from Google Drive and place under `data/`:
+https://drive.google.com/drive/folders/1472iWG8U6g5XaJBz2bdI_UI-kOFbpU-n?usp=sharing
+- protein_database_1.pickle
+- biogrid_net.gpickle
+The first pickle file contains all the human proteins we included in our study, with their feature scores (PLM, disorder, solvent accessibility, conservation) pre-annotated.
+The second gpickel file contains all the human PPIs in BioGRID, their number of citations and throughput are annotated. 
 Download the two files below in https://drive.google.com/drive/folders/1472iWG8U6g5XaJBz2bdI_UI-kOFbpU-n?usp=sharing
 protein_database_1.pickle
 This contains all the human proteins we included in our study, with their feature scores (PLM, disorder, solvent accessibility, conservation) pre-annotated.
