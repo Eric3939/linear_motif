@@ -19,6 +19,14 @@ biogrid_net.gpickle
 
 Save the two files directly under the data/ folder, after downloading the whole github repository.
 
+There are a few ways to run our algorithm. You can either run it on one single LMBD protein network, or on all the LMBD protein networks in BioGRID.
+1. Single LMBD protein network with proteins we identified in BioGRID
+
+2. Single LMBD protein network with proteins that user defines.
+
+3. All LMBD protein networks in human proteome.
+
+
 To run the algorithm, first locate search.py in the script folder. Run the following command:
 
 python search.py [LMBD protein] [results directory]
