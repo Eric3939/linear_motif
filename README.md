@@ -73,8 +73,8 @@ User can use the script `result_table.py` under `script/` folder to convert all 
 
 
 
-# Predicted Motif Database
+## Predicted Motif Database
 We ran our algorithm on all human proteins as described in our paper. The results (221840 predicted motifs in human proteome) are listed in the table `results_table.csv`.
 
-# Paper repository
+## Paper repository
 All other codes used in our paper are in the repostory/ folder, especially the codes we used to calculate the four feature scores (PLM, disorder, solvent accessibility, conservation).
