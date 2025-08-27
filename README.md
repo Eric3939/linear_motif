@@ -25,57 +25,55 @@ Download this Github repository in user's local device.
 ### Step 2 - Download data
 Download these files from Google Drive and place under `data/`:
 https://drive.google.com/drive/folders/1472iWG8U6g5XaJBz2bdI_UI-kOFbpU-n?usp=sharing
-- protein_database_1.pickle
-- biogrid_net.gpickle
+- `protein_database_1.pickle`
+- `biogrid_net.gpickle`
 The first pickle file contains all the human proteins we included in our study, with their feature scores (PLM, disorder, solvent accessibility, conservation) pre-annotated.
 The second gpickel file contains all the human PPIs in BioGRID, their number of citations and throughput are annotated. 
-Download the two files below in https://drive.google.com/drive/folders/1472iWG8U6g5XaJBz2bdI_UI-kOFbpU-n?usp=sharing
-protein_database_1.pickle
-This contains all the human proteins we included in our study, with their feature scores (PLM, disorder, solvent accessibility, conservation) pre-annotated.
 
-biogrid_net.gpickle
-This contains all the human PPIs in BioGRID, their number of citations and throughput are annotated. 
-
-Save the two files directly under the data/ folder. 
-
-Step 3
+### Step 3 - Running models
 There are a few ways to run our algorithm. You can either run it on one single LMBD protein network, or on all the LMBD protein networks in BioGRID.
-1. Single LMBD protein network with proteins we identified in BioGRID
-Locate to script/ folder.
-Run code:
+**1) Single LMBD protein network with proteins we identified in BioGRID**
+<code>
+cd script/
 python search.py [LMBD protein] [output directory]
+</code>
 
 In this method, user is asked to only give a LMBD protein. The algorithm will find all the proteins that interact with the LMBD protein from BioGRID and serch motifs on these interacting proteins. All proteins using this method are pre-annotated. This is the easiest way to use our algorithm, however, it does not offer fluxibility to define what proteins to input. 
 
-2. User defined proteins
-Locate to script/ folder.
+**2) User defined proteins**
+<code>
+cd script/
+</code>
 Create a text file that contains all the protein user wants to search for motifs. One protein's UniProt ID per line.
-Run code:
+<code>
 python run_users_proteins.py [proteins_file_path]
+</code>
 
 In this method, user is asked to input the proteins that they believe might contain a common motif. This is a common way that most linear motif discovery algorithms work. The algorithm retrieves the pre-annotated proteins from our database. Please note that our algorithm currently does not support proteins that are not yet recorded in our database.
 
-3. All LMBD protein networks in human proteome.
-Locate to script/ folder.
-Run code:
+**3) Full proteome (all LMBD networks)**
+<code>
+cd script/
 python run_proteome.py [biogrid_path] [output_folder]
+</code>
 
 Running this code will recreate our study in the paper. User can also explore running the algorithm in other parameters by modifying the search.py script.
 
+**(Optional) HPC with SLURM**
 If user is using a High Performance Computing (HPC) system with SLURM scheduler, we also made a tool that submit motif searching jobs automatically (user might need to edit the script for it to be compatible with their own pipeline):
-Locate to script/ folder.
-Run code:
+<code>
+cd script/
 python submit_slurm.py [biogrid_path] [results_folder] [dataframe_path]
+</code>
 
-
-Step 4
+### Step 4 - Results
 The results will be saved inside the output folder. Each search on a LMBD protein network outputs one pickle file, which stores the run result of that network. This means that a full proteome run (e.g., method 3) will output multiple pickle files.
-User can use the script result_table.py under script/ folder to convert all pickle files into one single table listing all the discovered motifs.
+User can use the script `result_table.py` under `script/` folder to convert all pickle files into one single table listing all the discovered motifs.
 
 
 
 # Predicted Motif Database
-We ran our algorithm on all human proteins as described in our paper. The results (221840 predicted motifs in human proteome) are listed in the table results_table.csv.
+We ran our algorithm on all human proteins as described in our paper. The results (221840 predicted motifs in human proteome) are listed in the table `results_table.csv`.
 
 # Paper repository
 All other codes used in our paper are in the repostory/ folder, especially the codes we used to calculate the four feature scores (PLM, disorder, solvent accessibility, conservation).
