@@ -15,11 +15,15 @@ Short linear motifs (SLiMs) are short sequence patterns that mediate transient p
 Before you run:<br>
 We call a hub protein (a protein that interacts with several other proteins) a linear motif binding domain protein (LMBD protein). The algorithm (method 1 and 3) finds all the interacting proteins of a LMBD protein and search for a motif in these interacting motifs. We call these interacting proteins a LMBD protein network. The protein-protein interactions are obtained from BioGRID, with a filter applied as described in our paper (either low throughput or at least 2 sources). 
 
-### Step 1 - Clone repo
+### Step 1 - Clone repository and install dependencies
 Download this Github repository in user's local device. 
 ```sh
 git clone https://github.com/Eric3939/linear_motif.git
 cd linear_motif
+```
+Install the required packages. Please note that pomegranate==0.15.0 is a strict requirement, as the latest version 1.0.0 has not yet implemented the HMM hidden states. It might be acceptable for older pomegranate versions, but this has not been tested yet.
+```sh
+pip install -r requirements.txt
 ```
 
 ### Step 2 - Download data
