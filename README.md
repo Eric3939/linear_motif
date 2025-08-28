@@ -41,36 +41,38 @@ https://drive.google.com/drive/folders/1472iWG8U6g5XaJBz2bdI_UI-kOFbpU-n?usp=sha
 - `biogrid_net.gpickle`: contains all human PPIs from BioGRID, annotated with number of citations and throughput.
 
 ### Step 3 - Running models
-There are a few ways to run our algorithm. You can either run it on one single LMBD protein network, or on all the LMBD protein networks in BioGRID.<br>
-**1) Single LMBD protein network with proteins we identified in BioGRID**
+The algorithm can be run at three different scales:
+1. a single LMBD protein network in BioGRID
+2. a user-defined set of proteins
+3. all LMBD protein networks in BioGRID
+
+**1) Single LMBD protein network (BioGRID proteins)**
 ```sh
 cd script/
-python search.py [LMBD protein] [output directory]
+python search.py [LMBD_protein] [output_directory]
 ```
-
-In this method, user is asked to only give a LMBD protein. The algorithm will find all the proteins that interact with the LMBD protein from BioGRID and serch motifs on these interacting proteins. All proteins using this method are pre-annotated. This is the easiest way to use our algorithm, however, it does not offer fluxibility to define what proteins to input. 
+In this mode, the user provides only a single LMBD protein. The algorithm retrieves all interacting partners of the LMBD protein from BioGRID and searches for motifs within them (a LMBD protein network). All proteins are pre-annotated in our database. This is the simplest way to run the algorithm, but it does not allow customization of the input set.
 
 **2) User defined proteins**
 ```sh
 cd script/
 ```
-Create a text file that contains all the protein user wants to search for motifs. One protein's UniProt ID per line.
+Prepare a text file with one UniProt ID per line.
 ```sh
 python run_users_proteins.py [proteins_file_path]
 ```
-
-In this method, user is asked to input the proteins that they believe might contain a common motif. This is a common way that most linear motif discovery algorithms work. The algorithm retrieves the pre-annotated proteins from our database. Please note that our algorithm currently does not support proteins that are not yet recorded in our database.
+In this mode, the user specifies a custom set of proteins (via UniProt IDs) that are hypothesized to share a common motif. The algorithm retrieves these proteins from our pre-annotated database.
+Note: Our protein database contains 20419 human proteins from UniProt. Proteins not included in our database are not currently supported.
 
 **3) Full proteome (all LMBD networks)**
 ```sh
 cd script/
 python run_proteome.py [biogrid_path] [output_folder]
 ```
+This mode reproduces the results described in our paper by running motif discovery across all LMBD protein networks in BioGRID. Parameters can be adjusted by modifying `search.py`.
 
-Running this code will recreate our study in the paper. User can also explore running the algorithm in other parameters by modifying the search.py script.
-
-**(Optional) HPC with SLURM**
-If user is using a High Performance Computing (HPC) system with SLURM scheduler, we also made a tool that submit motif searching jobs automatically (user might need to edit the script for it to be compatible with their own pipeline):
+**(Optional) High-Performance Computing with SLURM**
+If user is using a High Performance Computing (HPC) system with SLURM scheduler, we provide a helper script to submit motif-search jobs automatically (adaptation to local pipelines may be required):
 ```sh
 cd script/
 python submit_slurm.py [biogrid_path] [results_folder] [dataframe_path]
