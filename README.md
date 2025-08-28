@@ -85,6 +85,7 @@ To aggregate results, use the script `result_table.py` (in the `script/` folder)
 
 ## Predicted Motif Database
 We applied our algorithm to the entire human proteome as described in the paper, generating 221,840 predicted motifs. The results are provided in `results_table.csv`.
+
 Example records from the database:
 
 ```sh
