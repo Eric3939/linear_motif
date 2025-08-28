@@ -79,13 +79,14 @@ python submit_slurm.py [biogrid_path] [results_folder] [dataframe_path]
 ```
 
 ### Step 4 - Results
-The results will be saved inside the output folder. Each search on a LMBD protein network outputs one pickle file, which stores the run result of that network. That being said, for a full proteome run (method 3), the algorithm will output one pickle file per LMBD protein network.
-User can use the script `result_table.py` under `script/` folder to convert all pickle files into one single table listing all the discovered motifs.
+Each run produces one pickle file per LMBD protein network, saved in the user-specified output folder. For a full proteome run (method 3), the algorithm will therefore generate one pickle file for each LMBD protein network.  
+To aggregate results, use the script `result_table.py` (in the `script/` folder) to convert all pickle files into a single table listing the discovered motifs.
 
 
 ## Predicted Motif Database
-We ran our algorithm on all human proteins as described in our paper. The results (221840 predicted motifs in human proteome) are listed in the table `results_table.csv`.
-The first few records of our database:
+We applied our algorithm to the entire human proteome as described in the paper, generating 221,840 predicted motifs. The results are provided in `results_table.csv`.
+Example records from the database:
+
 ```sh
 protein  motif    start  end  length  info_content        plm     disorder  solvent_acc  conservation
 A0AV96   PPPFQGR  510    516  7       3.251699685122221   1.584   1.128     1.165        1.548
@@ -96,7 +97,7 @@ A0AV96   AAAVIP   500    505  6       2.1140273005497536  0.01503 1.332     0.63
 
 
 ## Paper code repository
-All other codes used in our paper are in the repostory/ folder, especially the codes we used to calculate the four feature scores (PLM, disorder, solvent accessibility, conservation).
+Additional scripts used in the paper are provided in the `repostory/' folder, including those used to compute the four feature scores (PLM, disorder, solvent accessibility, conservation).
 
 
 ## Citation
