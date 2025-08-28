@@ -1,7 +1,7 @@
 # linear_motif
 
 **Automating Linear Motif Predictions to Map Human Signaling Networks**
-Yitao (Eric) Sun, Yu (Brandon) Xia, Jasmin Coulombe-Huntington
+Yitao (Eric) Sun, Yu (Brandon) Xia, Jasmin Coulombe-Huntington,
 Department of Bioengineering, McGill University
 
 
@@ -12,8 +12,8 @@ Short linear motifs (SLiMs) are short sequence patterns that mediate transient p
 
 
 ## Running the algorithm
-Before running the algorithm:
-We call a hub protein (a protein that interacts with several other proteins) a linear motif binding domain protein (LMBD protein). The algorithm (method 1 and 3) finds all the interacting proteins of a LMBD protein and search for a motif in these interacting motifs. We call these interacting proteins a LMBD protein network. The protein-protein interactions are obtained from BioGRID, wiht a filter applied asdescribed in our paper (either low throughput or at least 2 sources). 
+Before you run:<br>
+We call a hub protein (a protein that interacts with several other proteins) a linear motif binding domain protein (LMBD protein). The algorithm (method 1 and 3) finds all the interacting proteins of a LMBD protein and search for a motif in these interacting motifs. We call these interacting proteins a LMBD protein network. The protein-protein interactions are obtained from BioGRID, with a filter applied as described in our paper (either low throughput or at least 2 sources). 
 
 ### Step 1 - Clone repo
 Download this Github repository in user's local device. 
@@ -32,7 +32,7 @@ The first pickle file contains all the human proteins we included in our study, 
 The second gpickel file contains all the human PPIs in BioGRID, their number of citations and throughput are annotated. 
 
 ### Step 3 - Running models
-There are a few ways to run our algorithm. You can either run it on one single LMBD protein network, or on all the LMBD protein networks in BioGRID.
+There are a few ways to run our algorithm. You can either run it on one single LMBD protein network, or on all the LMBD protein networks in BioGRID.<br>
 **1) Single LMBD protein network with proteins we identified in BioGRID**
 ```sh
 cd script/
@@ -75,6 +75,14 @@ User can use the script `result_table.py` under `script/` folder to convert all 
 
 ## Predicted Motif Database
 We ran our algorithm on all human proteins as described in our paper. The results (221840 predicted motifs in human proteome) are listed in the table `results_table.csv`.
+The first few records of our database:
+```sh
+protein  motif    start  end  length  info_content        plm     disorder  solvent_acc  conservation
+A0AV96   PPPFQGR  510    516  7       3.251699685122221   1.584   1.128     1.165        1.548
+A0AV96   SDSAAGS  12     18   7       2.2353015793897852  0.544   1.38      0.4985       -1.421
+A0AV96   STAAMSS  6      12   7       2.415746185344202   1.232   1.299     0.624        0.1235
+A0AV96   AAAVIP   500    505  6       2.1140273005497536  0.01503 1.332     0.6396       -1.903
+```
 
 ## Paper repository
 All other codes used in our paper are in the repostory/ folder, especially the codes we used to calculate the four feature scores (PLM, disorder, solvent accessibility, conservation).
